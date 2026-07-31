@@ -95,14 +95,6 @@ def talk_to_ai(user_query):
     disk_free = round(disk.free / (1024 ** 3), 2)
     disk_percent = round((disk.used / disk.total) * 100, 1)
 
-    # 4. Bonus: Battery Status (Crucial for mobile robots!)
-    battery = psutil.sensors_battery()
-    if battery:
-        battery_percent = battery.percent
-        is_plugged = battery.power_plugged
-    else:
-        battery_percent = "N/A"
-        is_plugged = "N/A"
 
     # Initialize the client with your API key
     client = Client(api_key="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")
