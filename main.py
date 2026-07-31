@@ -21,14 +21,7 @@ def check_ram():
     disk_free = round(disk.free / (1024 ** 3), 2)
     disk_percent = round((disk.used / disk.total) * 100, 1)
 
-    # 4. Bonus: Battery Status (Crucial for mobile robots!)
-    battery = psutil.sensors_battery()
-    if battery:
-        battery_percent = battery.percent
-        is_plugged = battery.power_plugged
-    else:
-        battery_percent = "N/A"
-        is_plugged = "N/A"
+
     if ram_available < 4:
         st.image("image_1d503c4e.png", width=100)
         text_to_say = "Bro! do you want me to die?"
@@ -52,14 +45,7 @@ def check_cpu():
     disk_free = round(disk.free / (1024 ** 3), 2)
     disk_percent = round((disk.used / disk.total) * 100, 1)
 
-    # 4. Bonus: Battery Status (Crucial for mobile robots!)
-    battery = psutil.sensors_battery()
-    if battery:
-        battery_percent = battery.percent
-        is_plugged = battery.power_plugged
-    else:
-        battery_percent = "N/A"
-        is_plugged = "N/A"
+
     if cpu_usage > 95:
         st.image("image_10ec546a.png", width=100)
         text_to_say = "Bro! please close the tabs you are not using! my usage is rising like a Ninja flying faster than light"
@@ -84,14 +70,7 @@ def check_disk():
     disk_free = round(disk.free / (1024 ** 3), 2)
     disk_percent = round((disk.used / disk.total) * 100, 1)
 
-    # 4. Bonus: Battery Status (Crucial for mobile robots!)
-    battery = psutil.sensors_battery()
-    if battery:
-        battery_percent = battery.percent
-        is_plugged = battery.power_plugged
-    else:
-        battery_percent = "N/A"
-        is_plugged = "N/A"
+
     if disk_free < 5:
         st.image("image_553a7b1a.png", width=100)
         text_to_say = "Bro! free up the storage! i am feeling like i am sitting tightly!"
