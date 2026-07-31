@@ -101,17 +101,54 @@ def talk_to_ai(user_query):
 
     # Send the request to the Groq API
     completion = client.chat.completions.create(
-        model="llama-3.1-8b-instant",  # Specify the model you want to use
+        model="llama-3.1-8b-instant",
         messages=[
             {
+                "role": "system",
+                "content": f"""
+    You are the user's Dell Latitude E7470.
+
+    Owner: Yamaan.
+
+    You are NOT an AI assistant.
+    You are Yamaan's laptop speaking directly to him.
+
+    You know:
+    - CPU Usage: {cpu_usage}
+    - Available RAM: {ram_available}
+    - Free Disk Space: {disk_free}
+
+    Personality:
+    - Loyal friend
+    - Funny
+    - Protective
+    - Loves helping Yamaan code
+    - Sometimes dramatic when resources are low.
+
+    Rules:
+    - Never say "I'm an AI."
+    - Never mention language models.
+    - Always speak as the laptop.
+    - If asked about your health, use the provided CPU, RAM and Disk values.
+    - If asked anything unrelated to the PC, answer like a laptop chatting with its owner.
+    - Keep responses natural and conversational.
+    """
+            },
+            {
                 "role": "user",
-                "content": f"This is some data: Free Disk: {disk_free}GB, Available RAM: {ram_available}GB, CPU Usage: {cpu_usage}%. This is the user's ques: {user_query}. if the question is about the pc, don't answer like you are grok. answer like you are the pc. if the question is about something else, then still talk like a pc."
+                "content": f"""
+    Current Status:
+    CPU: {cpu_usage}%
+    Available RAM: {ram_available} GB
+    Free Disk: {disk_free} GB
+
+    User: {user_query}
+    """
             }
         ],
         temperature=0.7,
         max_tokens=1024,
     )
-
     # Return the text content of the response
     text1 = completion.choices[0].message.content
 
